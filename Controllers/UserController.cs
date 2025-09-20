@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProyectoTest.Models.Data;
+using System.Threading.Tasks;
 
 namespace ProyectoTest.Controllers
 {
@@ -9,9 +10,10 @@ namespace ProyectoTest.Controllers
         public UserController()
         {
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var data = await _db.Users.ToListAsync();
+            return View(data);
         }
         public IActionResult Create()
         {
